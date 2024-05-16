@@ -3,6 +3,10 @@
   "version": "1.17.2",
   "private": true,
   "homepage": "https://plankanban.github.io/planka",
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/plankanban/planka.git"
