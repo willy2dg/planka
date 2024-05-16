@@ -16,7 +16,7 @@
     "client:test": "npm test --prefix client",
     "docker:build": "docker build -t ghcr.io/plankanban/planka:local -f Dockerfile .",
     "docker:build:base": "docker build -t ghcr.io/plankanban/planka:base-local -f Dockerfile.base .",
-    "postinstall": "(cd server && npm i && cd ../client && npm i)",
+    "postinstall": "(cd server && npm i && cd ../client && npm i && cd .. && cp client/build/asset-manifest.json server/public/asset-manifest.json && cp client/build/favicon.ico server/public/favicon.ico && cp client/build/logo192.png server/public/logo192.png && cp client/build/logo512.png server/public/logo512.png && cp client/build/manifest.json server/public/manifest.json && cp client/build/robots.txt server/public/robots.txt && cp -r client/build/static server/public/static && cp client/build/index.html server/views/index.ejs)",
     "lint": "npm run server:lint && npm run client:lint",
     "prepare": "husky install",
     "server:console": "npm run console --prefix server",
