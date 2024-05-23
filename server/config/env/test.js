@@ -48,7 +48,7 @@ module.exports = {
     default: {
       //adapter: 'sails-disk',
       adapter: require('sails-mongo'),
-      url: 'mongodb+srv://scsplanka:KudFaUEzOOlBkMcy@scsplanka.vuadqu0.mongodb.net/scsplanka',
+      url: process.env.DATABASE_URL_MONGO,
       /**
        *
        * More adapter-specific options

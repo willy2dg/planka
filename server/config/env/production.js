@@ -53,7 +53,7 @@ module.exports = {
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
       adapter: require('sails-mongo'),
-      url: 'mongodb+srv://scsplanka:KudFaUEzOOlBkMcy@scsplanka.vuadqu0.mongodb.net/scsplanka',
+      url: process.env.DATABASE_URL_MONGO,
       /**
        *
        * More adapter-specific options
