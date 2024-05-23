@@ -52,8 +52,6 @@ module.exports = {
     default: {
       // adapter: 'sails-mysql',
       // url: 'mysql://user:password@host:port/database',
-      // adapter: require('sails-mongo'),
-      // url: process.env.DATABASE_URL_MONGO,
       /**
        *
        * More adapter-specific options
@@ -65,7 +63,7 @@ module.exports = {
        * https://sailsjs.com/config/datastores
        *
        */
-      //  ssl: true,
+      // ssl: true,
     },
   },
 
@@ -133,9 +131,9 @@ module.exports = {
      */
 
     cors: {
-      allowOrigins: [
-        'https://scsplanka-8a31f697a5e3.herokuapp.com',
-      ],
+      // allowOrigins: [
+      //   'https://example.com',
+      // ],
     },
   },
 
@@ -220,9 +218,7 @@ module.exports = {
      *
      */
 
-    onlyAllowOrigins: [new url.URL(process.env.BASE_URL).origin,
-      "https://scsplanka-8a31f697a5e3.herokuapp.com"
-    ],
+    onlyAllowOrigins: [new url.URL(process.env.BASE_URL).origin],
 
     /**
      *
