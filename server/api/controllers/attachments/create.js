@@ -1,5 +1,11 @@
 const util = require('util');
+const sikipperS3 = require('skipper-s3');
 const { v4: uuid } = require('uuid');
+const skipperS3 = require('skipper-s3');
+
+const { S3_KEY } = process.env;
+const { S3_SECRET } = process.env;
+const { S3_BUCKET } = process.env;
 
 const Errors = {
   NOT_ENOUGH_RIGHTS: {
@@ -70,6 +76,10 @@ module.exports = {
       files = await upload({
         saveAs: uuid(),
         maxBytes: null,
+        adapter: skipperS3,
+        key: S3_KEY,
+        secret: S3_SECRET,
+        bucket: S3_KEY,
       });
     } catch (error) {
       return exits.uploadError(error.message); // TODO: add error
