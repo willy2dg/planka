@@ -46,7 +46,7 @@ module.exports = {
      */
 
     default: {
-      adapter: 'sails-disk',
+      //adapter: 'sails-disk',
 
       /**
        *
@@ -59,8 +59,9 @@ module.exports = {
        * https://sailsjs.com/config/datastores
        *
        */
-
-      inMemoryOnly: true,
+      adapter: 'sails-mongo',
+      url: process.env.DATABASE_URL_MONGO,
+      inMemoryOnly: false,
     },
   },
 
