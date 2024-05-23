@@ -46,8 +46,9 @@ module.exports = {
      */
 
     default: {
-      adapter: 'sails-disk',
-
+      //adapter: 'sails-disk',
+      adapter: require('sails-mongo'),
+      url: 'mongodb+srv://scsplanka:KudFaUEzOOlBkMcy@scsplanka.vuadqu0.mongodb.net/scsplanka',
       /**
        *
        * More adapter-specific options
@@ -60,7 +61,7 @@ module.exports = {
        *
        */
 
-      inMemoryOnly: true,
+      inMemoryOnly: false,
     },
   },
 
