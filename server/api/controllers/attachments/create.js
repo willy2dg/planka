@@ -1,5 +1,6 @@
 const util = require('util');
-const { v4: uuid } = require('uuid');
+const skipper = require('skipper-s3');
+// const { v4: uuid } = require('uuid');
 
 const Errors = {
   NOT_ENOUGH_RIGHTS: {
@@ -67,20 +68,44 @@ module.exports = {
 
     let files;
     try {
+      // console.log('Intentando suubir!');
       files = await upload({
-        saveAs: uuid(),
+        adapter: skipper,
+        key: process.env.AWS_S3_ACCESS_KEY_ID,
+        secret: process.env.AWS_S3_SECRET_ACCESS_KEY,
+        bucket: process.env.AWS_S3_BUCKET_NAME,
+        region: process.env.AWS_S3_REGION,
         maxBytes: null,
+        // saveAs: uuid(),
+        // maxBytes: null,
       });
     } catch (error) {
+      // console.log('mi error....', error);
       return exits.uploadError(error.message); // TODO: add error
     }
+
+    // console.log('Pase el error...');
 
     if (files.length === 0) {
       throw Errors.NO_FILE_WAS_UPLOADED;
     }
-
+    // console.log('Pase el error... 2 ');
     const file = _.last(files);
-    const fileData = await sails.helpers.attachments.processUploadedFile(file);
+
+    // console.log('Pase el error... 2.5 ', file);
+    // const fileData = await sails.helpers.attachments.processUploadedFile(file);
+    const fileData = { ...file, dirname: file.filename, name: file.fd };
+    // console.log('fileData', fileData);
+
+    // console.log("Pase el error...3",{
+    //   values: {
+    //     ...fileData,
+    //     card,
+    //     creatorUser: currentUser,
+    //   },
+    //   requestId: inputs.requestId,
+    //   request: this.req,
+    // })
 
     const attachment = await sails.helpers.attachments.createOne.with({
       values: {
@@ -91,6 +116,8 @@ module.exports = {
       requestId: inputs.requestId,
       request: this.req,
     });
+
+    // console.log('Pase el error... 4');
 
     return exits.success({
       item: attachment,

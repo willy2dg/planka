@@ -59,6 +59,7 @@
     }
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@juggle/resize-observer": "^3.4.0",
     "classnames": "^2.5.1",
     "date-fns": "^2.30.0",

@@ -39,7 +39,7 @@ try {
   rc = require('sails/accessible/rc');
   /* eslint-enable global-require */
 } catch (error) {
-  //console.log("FAllado en produccion")
+  // console.log("FAllado en produccion")
   /* eslint-disable no-console */
   console.error("Encountered an error when attempting to require('sails'):");
   console.error(error.stack);

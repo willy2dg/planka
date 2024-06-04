@@ -62,7 +62,8 @@
   "dependencies": {
     "concurrently": "^8.2.2",
     "husky": "^8.0.3",
-    "lint-staged": "^15.2.2"
+    "lint-staged": "^15.2.2",
+    "skipper-s3": "^0.6.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

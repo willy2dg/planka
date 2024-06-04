@@ -46,7 +46,7 @@ module.exports = {
      */
 
     default: {
-      //adapter: 'sails-disk',
+      // adapter: 'sails-disk',
 
       /**
        *
