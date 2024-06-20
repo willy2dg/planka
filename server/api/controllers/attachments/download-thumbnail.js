@@ -60,6 +60,7 @@ module.exports = {
     this.res.type('image/jpeg');
     this.res.set('Cache-Control', 'private, max-age=900'); // TODO: move to config
 
+    console.log("filepath", filePath)
     return exits.success(fs.createReadStream(filePath));
   },
 };
