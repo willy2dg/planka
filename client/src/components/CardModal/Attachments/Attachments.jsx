@@ -12,17 +12,17 @@ import styles from './Attachments.module.scss';
 
 const INITIALLY_VISIBLE = 4;
 
-const style = {
-  position: 'fixed',
-  left: '0',
-  width: '900px !important',
-  height: 'auto',
-  overflow: 'auto',
-  bgcolor: 'transparent',
-  border: '2px solid #000',
-  maxWidth: '80vw !important',
-  maxHeight: '20vh !important',
-};
+// const style = {
+//   position: 'fixed',
+//   left: '0',
+//   width: '900px !important',
+//   height: 'auto',
+//   overflow: 'auto',
+//   bgcolor: 'transparent',
+//   border: '2px solid #000',
+//   maxWidth: '80vw !important',
+//   maxHeight: '20vh !important',
+// };
 
 const Attachments = React.memo(
   ({ items, canEdit, onUpdate, onDelete, onCoverUpdate, onGalleryOpen, onGalleryClose }) => {
@@ -75,7 +75,7 @@ const Attachments = React.memo(
 
       let props;
       if (item.image) {
-        console.log('Es item imagen');
+        // console.log('Es item imagen');
         props = item.image;
       } else {
         props = {
@@ -95,7 +95,7 @@ const Attachments = React.memo(
       }
 
       const isVisible = isAllVisible || index < INITIALLY_VISIBLE;
-      console.log('item', item);
+      // console.log('item', item);
 
       return (
         <GalleryItem
@@ -115,11 +115,11 @@ const Attachments = React.memo(
                 isPersisted={item.isPersisted}
                 canEdit={canEdit}
                 onClick={
-                  // item.image || isPdf ? open : undefined
-                  () => {
-                    console.log('Open modal.');
-                    setImagenOpen(item.url);
-                  }
+                  item.image || isPdf ? open : undefined
+                  // () => {
+                  //   console.log('Open modal.');
+                  //   setImagenOpen(item.url);
+                  // }
                 }
                 onCoverSelect={() => handleCoverSelect(item.id)}
                 onCoverDeselect={handleCoverDeselect}
