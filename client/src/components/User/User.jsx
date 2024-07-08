@@ -36,8 +36,10 @@ const getColor = (name) => {
 
 const preprocesarURL = function (url, name) {
   const splits = url.split('/');
-  // console.log('Splits en -1 :', splits[splits.length - 2], ' -- ', name);
-  return `https://scs-planka.s3.us-east-2.amazonaws.com/${splits[splits.length - 2]}`;
+  // console.log('Splits en -1 :', window.location.href.includes('externosplanka'));
+  return window.location.href.includes('externosplanka')
+    ? `https://externos-planka.s3.us-east-2.amazonaws.com/${splits[splits.length - 2]}`
+    : `https://scs-planka.s3.us-east-2.amazonaws.com/${splits[splits.length - 2]}`;
 };
 
 const User = React.memo(({ name, avatarUrl, size, isDisabled, onClick }) => {
