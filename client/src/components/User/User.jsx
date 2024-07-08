@@ -34,6 +34,12 @@ const getColor = (name) => {
   return COLORS[sum % COLORS.length];
 };
 
+const preprocesarURL = function (url, name) {
+  const splits = url.split('/');
+  // console.log('Splits en -1 :', splits[splits.length - 2], ' -- ', name);
+  return `https://scs-planka.s3.us-east-2.amazonaws.com/${splits[splits.length - 2]}`;
+};
+
 const User = React.memo(({ name, avatarUrl, size, isDisabled, onClick }) => {
   const contentNode = (
     <span
@@ -45,7 +51,7 @@ const User = React.memo(({ name, avatarUrl, size, isDisabled, onClick }) => {
         !avatarUrl && styles[`background${upperFirst(camelCase(getColor(name)))}`],
       )}
       style={{
-        background: avatarUrl && `url("${avatarUrl}") center / cover`,
+        background: avatarUrl && `url("${preprocesarURL(avatarUrl, name)}") center / cover`,
       }}
     >
       {!avatarUrl && <span className={styles.initials}>{initials(name)}</span>}

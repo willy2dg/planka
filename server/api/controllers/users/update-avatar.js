@@ -1,6 +1,7 @@
 const util = require('util');
 const rimraf = require('rimraf');
 const { v4: uuid } = require('uuid');
+const skipper = require('skipper-s3');
 
 const Errors = {
   USER_NOT_FOUND: {
@@ -61,7 +62,13 @@ module.exports = {
     let files;
     try {
       files = await upload({
-        saveAs: uuid(),
+        // saveAs: uuid(),
+        // maxBytes: null,
+        adapter: skipper,
+        key: process.env.AWS_S3_ACCESS_KEY_ID,
+        secret: process.env.AWS_S3_SECRET_ACCESS_KEY,
+        bucket: process.env.AWS_S3_BUCKET_NAME,
+        region: process.env.AWS_S3_REGION,
         maxBytes: null,
       });
     } catch (error) {
@@ -74,17 +81,19 @@ module.exports = {
 
     const file = _.last(files);
 
-    const fileData = await sails.helpers.users
-      .processUploadedAvatarFile(file)
-      .intercept('fileIsNotImage', () => {
-        try {
-          rimraf.sync(file.fd);
-        } catch (error) {
-          console.warn(error.stack); // eslint-disable-line no-console
-        }
+    // const fileData = await sails.helpers.users
+    //   .processUploadedAvatarFile(file)
+    //   .intercept('fileIsNotImage', () => {
+    //     try {
+    //       rimraf.sync(file.fd);
+    //     } catch (error) {
+    //       console.warn(error.stack); // eslint-disable-line no-console
+    //     }
 
-        return Errors.FILE_IS_NOT_IMAGE;
-      });
+    //     return Errors.FILE_IS_NOT_IMAGE;
+    //   });
+    const fileData = { ...file, dirname: file.fd, name: file.fd };
+
 
     user = await sails.helpers.users.updateOne.with({
       record: user,
